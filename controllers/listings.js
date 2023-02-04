@@ -64,10 +64,67 @@ const deleteListing = async (req, res) => {
   }
 }
 
+const createReview = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const listing = await Listing.findById(req.params.id)
+    listing.reviews.push(req.body)
+    await listing.save()
+
+    const newReview = listing.reviews[listing.reviews.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newReview.author = profile
+
+    res.status(201).json(newReview)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
+const createReservation = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const listing = await Listing.findById(req.params.id)
+    listing.reservation.push(req.body)
+    await listing.save()
+
+    const newReservation = listing.reservation[listing.reservation.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newReservation.author = profile
+
+    res.status(201).json(newReservation)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
+const createActivity = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const listing = await Listing.findById(req.params.id)
+    listing.activities.push(req.body)
+    await listing.save()
+
+    const newActivity = listing.activities[listing.activities.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newActivity.author = profile
+
+    res.status(201).json(newActivity)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index,
   show,
   update,
   deleteListing as delete,
+  createReview,
+  createReservation,
+  createActivity,
 }
