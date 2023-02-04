@@ -29,8 +29,22 @@ const index = async (req,res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+      const listing = await Listing.findById(req.params.id)
+          .populate('author')
+      res.status(200).json(listing)
+  } catch (error) {
+      res.status(500).json(error)
+  }
+}
+
+
+
 
 export {
   create,
-  index
+  index,
+  show,
+  
 }
