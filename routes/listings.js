@@ -14,6 +14,6 @@ router.get('/', checkAuth, listingsCtrl.index)
 router.get('/:id', checkAuth, listingsCtrl.show)
 router.put('/:id', checkAuth, listingsCtrl.update)
 router.delete('/:id', checkAuth, listingsCtrl.delete)
-
+router.post('/:id/reviews', checkAuth, listingsCtrl.createReview)
 
 export { router }

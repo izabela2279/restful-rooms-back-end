@@ -64,10 +64,29 @@ const deleteListing = async (req, res) => {
   }
 }
 
+const createReview = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const listing = await Listing.findById(req.params.id)
+    listing.reviews.push(req.body)
+    await listing.save()
+
+    const newReview = listing.reviews[listing.reviews.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newReview.author = profile
+
+    res.status(201).json(newReview)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index,
   show,
   update,
   deleteListing as delete,
+  createReview,
 }
