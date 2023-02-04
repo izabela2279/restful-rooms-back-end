@@ -21,19 +21,23 @@ const listingSchema = new Schema(
       required: true,
     },
     bedrooms: {
-      type: String,
+      type: Number,
+      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     beds: {
-      type: String,
+      type: Number,
+      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     baths: {
-      type: String,
+      type: Number,
+      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     guests: {
-      type: String,
+      type: Number,
+      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     author: {
