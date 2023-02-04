@@ -18,6 +18,23 @@ const reviewSchema = new Schema(
   { timestamps: true }
 )
 
+const reservationSchema = new Schema(
+  {
+    dates: {
+      type: Date,
+      type: Date,
+      required: true
+    },
+    guests: {
+      type: Number,
+      guests: [ 1, 2, 3, 4, 5, 6 ],
+      required: true,
+    },
+    author: { type: Schema.Types.ObjectId, ref: "Profile" } 
+  },
+  { timestamps: true }
+)
+
 const listingSchema = new Schema(
   {
     title: {
@@ -60,7 +77,8 @@ const listingSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Profile",
     },
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    reservation: [reservationSchema],
   },
   { timestamps: true }
 )
