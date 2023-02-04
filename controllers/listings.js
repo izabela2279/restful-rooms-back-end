@@ -100,6 +100,24 @@ const createReservation = async (req, res) => {
   }
 }
 
+const createActivity = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const listing = await Listing.findById(req.params.id)
+    listing.activities.push(req.body)
+    await listing.save()
+
+    const newActivity = listing.activities[listing.activities.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newActivity.author = profile
+
+    res.status(201).json(newActivity)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index,
@@ -108,4 +126,5 @@ export {
   deleteListing as delete,
   createReview,
   createReservation,
+  createActivity,
 }
