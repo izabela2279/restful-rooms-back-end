@@ -35,6 +35,17 @@ const reservationSchema = new Schema(
   { timestamps: true }
 )
 
+const activitySchema = new Schema(
+  {
+    text: {
+      type: String,
+      required: true
+    },
+    author: { type: Schema.Types.ObjectId, ref: "Profile" } 
+  },
+  { timestamps: true }
+)
+
 const listingSchema = new Schema(
   {
     title: {
@@ -79,6 +90,7 @@ const listingSchema = new Schema(
     },
     reviews: [reviewSchema],
     reservation: [reservationSchema],
+    activities: [activitySchema],
   },
   { timestamps: true }
 )
