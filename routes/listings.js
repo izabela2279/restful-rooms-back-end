@@ -15,5 +15,6 @@ router.get('/:id', checkAuth, listingsCtrl.show)
 router.put('/:id', checkAuth, listingsCtrl.update)
 router.delete('/:id', checkAuth, listingsCtrl.delete)
 router.post('/:id/reviews', checkAuth, listingsCtrl.createReview)
+router.post('/:id/reservations', checkAuth, listingsCtrl.createReservation)
 
 export { router }

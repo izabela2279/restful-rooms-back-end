@@ -22,7 +22,6 @@ const reservationSchema = new Schema(
   {
     dates: {
       type: Date,
-      type: Date,
       required: true
     },
     guests: {

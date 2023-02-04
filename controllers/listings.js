@@ -82,6 +82,24 @@ const createReview = async (req, res) => {
   }
 }
 
+const createReservation = async (req, res) => {
+  try {
+    req.body.author = req.user.profile
+    const listing = await Listing.findById(req.params.id)
+    listing.reservation.push(req.body)
+    await listing.save()
+
+    const newReservation = listing.reservation[listing.reservation.length - 1]
+
+    const profile = await Profile.findById(req.user.profile)
+    newReservation.author = profile
+
+    res.status(201).json(newReservation)
+  } catch {
+    res.status(500).json(error)
+  }
+}
+
 export {
   create,
   index,
@@ -89,4 +107,5 @@ export {
   update,
   deleteListing as delete,
   createReview,
+  createReservation,
 }
