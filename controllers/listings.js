@@ -52,10 +52,22 @@ const update = async (req,res) => {
   }
 }
 
-
+const deleteListing = async (req, res) => {
+  try {
+      const listing = await Listing.findByIdAndDelete(req.params.id)
+      const profile = await Profile.findById(req.user.profile)
+      profile.listings.remove({ _id: req.params.id})
+      await profile.save()
+      res.status(200).json(blog)
+  } catch {
+      res.status(500).json(error)
+  }
+}
 export {
   create,
   index,
   show,
   update,
+  deleteListing as delete
+
 }

@@ -13,5 +13,7 @@ router.post('/', checkAuth, listingsCtrl.create)
 router.get('/', checkAuth, listingsCtrl.index)
 router.get('/:id', checkAuth, listingsCtrl.show)
 router.put('/:id', checkAuth, listingsCtrl.update)
+router.delete('/:id', checkAuth, listingsCtrl.delete)
+
 
 export { router }
