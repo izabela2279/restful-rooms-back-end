@@ -53,7 +53,6 @@ const listingSchema = new Schema(
     },
     photo: {
       type: String,
-      required: true,
     },
     location: {
       type: String,
