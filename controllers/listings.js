@@ -1,5 +1,6 @@
 import { Profile } from "../models/profile.js"
 import { Listing } from "../models/listing.js"
+import { v2 as cloudinary } from 'cloudinary'
 
 const create = async (req,res) => {
   try {
@@ -118,6 +119,26 @@ const createActivity = async (req, res) => {
   }
 }
 
+function addPhoto(req, res) {
+  const imageFile = req.files.photo.path
+  Listing.findById(req.params.id)
+  .then(listing => {
+    cloudinary.uploader.upload(imageFile, {tags: `listings`})
+    // In an application with auth use: {tags: `${req.user.email}`}
+    .then(image => {
+      listing.photo = image.url
+      listing.save()
+      .then(listing => {
+        res.status(201).json(listing.photo)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
+
 export {
   create,
   index,
@@ -127,4 +148,5 @@ export {
   createReview,
   createReservation,
   createActivity,
+  addPhoto,
 }
