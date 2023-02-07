@@ -22,16 +22,16 @@ const reservationSchema = new Schema(
   {
     dateCheckIn: {
       type: Date,
-      required: true
+      // required: true
     },
     dateCheckOut: {
       type: Date,
-      required: true
+      // required: true
     },
     guests: {
       type: Number,
-      guests: [ 1, 2, 3, 4, 5, 6 ],
-      required: true,
+      guests: {type:Number, min:1, max:8},
+      // required: true,
     },
     author: { type: Schema.Types.ObjectId, ref: "Profile" } 
   },
