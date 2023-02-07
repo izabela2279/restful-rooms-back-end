@@ -3,6 +3,8 @@ import { Listing } from "../models/listing.js"
 
 const create = async (req,res) => {
   try {
+    console.log('FORM DATA CHECK', req.body)
+
     req.body.author = req.user.profile
     const listing = await Listing.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
