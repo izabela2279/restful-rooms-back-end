@@ -20,7 +20,11 @@ const reviewSchema = new Schema(
 
 const reservationSchema = new Schema(
   {
-    dates: {
+    dateCheckIn: {
+      type: Date,
+      required: true
+    },
+    dateCheckOut: {
       type: Date,
       required: true
     },
