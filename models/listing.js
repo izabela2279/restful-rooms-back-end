@@ -92,7 +92,7 @@ const listingSchema = new Schema(
     },
     amenities: {
       type: String,
-      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
+      enum: [ Desk, ZettaGuard, USB, Monitors3x, Webcam, Headset, GoogleHome, Keyboard, Chargers, Chair],
     },
     author: {
       type: Schema.Types.ObjectId,
