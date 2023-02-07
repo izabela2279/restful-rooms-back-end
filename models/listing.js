@@ -92,7 +92,7 @@ const listingSchema = new Schema(
     },
     amenities: {
       type: String,
-      enum: [ Desk, ZettaGuard, USB, Monitors3x, Webcam, Headset, GoogleHome, Keyboard, Chargers, Chair],
+      enum: [ "FEZIBO Height Adjustable Electric Standing desk with Double Drawer, 48 x 24 Inch Table with Storage Shelf, Sit Stand Desk with Splice Board", "ZettaGuard HDMI 3×1 switch x 2 (for switching monitors between work laptop and home setup)", "UGREEN USB switch (for switching USB inputs between work laptop and home setup)", "Acer 27 inch monitors x 3", "Logitech webcam (camera and mic)", "HeadsetAfterShokz Bluetooth headset (speaker)", "Google Home Mini pair for playing music", "Lenovo keyboard and mouse (external, wired)", "an Anker USB-C Wall Charger, Premium 60W 5-Port Desktop Charger—4 USB 3.0 + 1 USB-C on one charger", "Herman Miller embody ergonomic office chair", "Standing mat", "Phone Chargers android and apple compatible"],
     },
     author: {
       type: Schema.Types.ObjectId,
