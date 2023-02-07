@@ -29,8 +29,7 @@ const reservationSchema = new Schema(
       // required: true
     },
     guests: {
-      type: Number,
-      guests: { type: Number, min: 1, max: 8 },
+      type: Number, min: 1, max: 6 ,
       // required: true,
     },
     author: { type: Schema.Types.ObjectId, ref: "Profile" }
