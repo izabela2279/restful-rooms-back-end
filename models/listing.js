@@ -11,7 +11,7 @@ const reviewSchema = new Schema(
     rating: {
       type: Number,
       enum: [ 1, 2, 3, 4, 5 ],
-      // required: true,
+      // // required: true,
     },
     author: { type: Schema.Types.ObjectId, ref: "Profile" } 
   },
@@ -53,7 +53,7 @@ const listingSchema = new Schema(
     },
     photo: {
       type: String,
-      // required: true,
+      required: true,
     },
     location: {
       type: String,
