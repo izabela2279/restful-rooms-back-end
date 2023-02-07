@@ -10,10 +10,10 @@ const reviewSchema = new Schema(
     },
     rating: {
       type: Number,
-      enum: [ 1, 2, 3, 4, 5 ],
-      // required: true,
+      enum: [1, 2, 3, 4, 5],
+      // // required: true,
     },
-    author: { type: Schema.Types.ObjectId, ref: "Profile" } 
+    author: { type: Schema.Types.ObjectId, ref: "Profile" }
   },
   { timestamps: true }
 )
@@ -22,18 +22,18 @@ const reservationSchema = new Schema(
   {
     dateCheckIn: {
       type: Date,
-      required: true
+      // required: true
     },
     dateCheckOut: {
       type: Date,
-      required: true
+      // required: true
     },
     guests: {
       type: Number,
-      guests: [ 1, 2, 3, 4, 5, 6 ],
-      required: true,
+      guests: { type: Number, min: 1, max: 8 },
+      // required: true,
     },
-    author: { type: Schema.Types.ObjectId, ref: "Profile" } 
+    author: { type: Schema.Types.ObjectId, ref: "Profile" }
   },
   { timestamps: true }
 )
@@ -44,7 +44,7 @@ const activitySchema = new Schema(
       type: String,
       required: true
     },
-    author: { type: Schema.Types.ObjectId, ref: "Profile" } 
+    author: { type: Schema.Types.ObjectId, ref: "Profile" }
   },
   { timestamps: true }
 )
@@ -72,22 +72,22 @@ const listingSchema = new Schema(
     },
     bedrooms: {
       type: Number,
-      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
+      enum: [1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     beds: {
       type: Number,
-      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
+      enum: [1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     baths: {
       type: Number,
-      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
+      enum: [1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     guests: {
       type: Number,
-      enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
+      enum: [1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
     author: {
@@ -95,7 +95,7 @@ const listingSchema = new Schema(
       ref: "Profile",
     },
     reviews: [reviewSchema],
-    reservation: [reservationSchema],
+    reservations: [reservationSchema],
     activities: [activitySchema],
   },
   { timestamps: true }

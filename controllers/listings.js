@@ -68,12 +68,14 @@ const deleteListing = async (req, res) => {
 const createReview = async (req, res) => {
   try {
     req.body.author = req.user.profile
+    console.log(req.body.author);
     const listing = await Listing.findById(req.params.id)
     listing.reviews.push(req.body)
-    await listing.save()
+    console.log(listing);
+    listing.save()
 
     const newReview = listing.reviews[listing.reviews.length - 1]
-
+console.log(newReview, "new review");
     const profile = await Profile.findById(req.user.profile)
     newReview.author = profile
 
@@ -87,10 +89,10 @@ const createReservation = async (req, res) => {
   try {
     req.body.author = req.user.profile
     const listing = await Listing.findById(req.params.id)
-    listing.reservation.push(req.body)
+    listing.reservations.push(req.body)
     await listing.save()
 
-    const newReservation = listing.reservation[listing.reservation.length - 1]
+    const newReservation = listing.reservations[listing.reservations.length - 1]
 
     const profile = await Profile.findById(req.user.profile)
     newReservation.author = profile
