@@ -99,7 +99,7 @@ const listingSchema = new Schema(
       ref: "Profile",
     },
     reviews: [reviewSchema],
-    reservation: [reservationSchema],
+    reservations: [reservationSchema],
     activities: [activitySchema],
   },
   { timestamps: true }
