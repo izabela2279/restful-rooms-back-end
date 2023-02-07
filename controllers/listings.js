@@ -89,10 +89,10 @@ const createReservation = async (req, res) => {
   try {
     req.body.author = req.user.profile
     const listing = await Listing.findById(req.params.id)
-    listing.reservation.push(req.body)
+    listing.reservations.push(req.body)
     await listing.save()
 
-    const newReservation = listing.reservation[listing.reservation.length - 1]
+    const newReservation = listing.reservations[listing.reservations.length - 1]
 
     const profile = await Profile.findById(req.user.profile)
     newReservation.author = profile
