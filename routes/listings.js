@@ -9,6 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+
 router.post('/', checkAuth, listingsCtrl.create)
 router.get('/', checkAuth, listingsCtrl.index)
 router.get('/:id', checkAuth, listingsCtrl.show)
@@ -17,5 +18,6 @@ router.delete('/:id', checkAuth, listingsCtrl.delete)
 router.post('/:id/reviews', checkAuth, listingsCtrl.createReview)
 router.post('/:id/reservations', checkAuth, listingsCtrl.createReservation)
 router.post('/:id/activities', checkAuth, listingsCtrl.createActivity)
+router.put('/:id/add-photo', checkAuth, listingsCtrl.addPhoto)
 
 export { router }
