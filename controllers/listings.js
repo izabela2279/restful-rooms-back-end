@@ -70,14 +70,11 @@ const deleteListing = async (req, res) => {
 const createReview = async (req, res) => {
   try {
     req.body.author = req.user.profile
-    console.log(req.body.author);
     const listing = await Listing.findById(req.params.id)
     listing.reviews.push(req.body)
-    console.log(listing);
     listing.save()
 
     const newReview = listing.reviews[listing.reviews.length - 1]
-console.log(newReview, "new review");
     const profile = await Profile.findById(req.user.profile)
     newReview.author = profile
 
@@ -127,8 +124,7 @@ function addPhoto(req, res) {
   const imageFile = req.files.photo.path
   Listing.findById(req.params.id)
   .then(listing => {
-    cloudinary.uploader.upload(imageFile, {tags: `listings`})
-    // In an application with auth you'll use: {tags: `${req.user.email}`}
+    cloudinary.uploader.upload(imageFile, {tags: `${req.user.email}`})
     .then(image => {
       listing.photo = image.url
       listing.save()
