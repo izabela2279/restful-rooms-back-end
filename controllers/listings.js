@@ -84,6 +84,14 @@ const createReview = async (req, res) => {
   }
 }
 
+const deleteReview = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
 const createReservation = async (req, res) => {
   try {
     req.body.author = req.user.profile
@@ -149,4 +157,5 @@ export {
   createReservation,
   createActivity,
   addPhoto,
+  deleteReview
 }
