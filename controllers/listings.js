@@ -148,6 +148,5 @@ export {
   createReview,
   createReservation,
   createActivity,
-  addPhoto,
-  deleteReview
+  addPhoto
 }
