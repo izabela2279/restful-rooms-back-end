@@ -86,9 +86,10 @@ const createReview = async (req, res) => {
 
 const deleteReview = async (req, res) => {
   try {
-    
+    const {id, reviewId} = req.params
+    res.status(201).json()
   } catch (error) {
-    
+    res.status(500).json(error)
   }
 }
 
