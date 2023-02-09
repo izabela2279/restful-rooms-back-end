@@ -84,6 +84,16 @@ const createReview = async (req, res) => {
   }
 }
 
+const deleteReview = async (req, res) => {
+  try {
+    const {id, reviewId} = req.params
+    await Listing.findByIdAndUpdate(id, {$pull: {reviews: {_id: reviewId} }})
+    res.status(201).json()
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 const createReservation = async (req, res) => {
   try {
     req.body.author = req.user.profile
@@ -149,4 +159,5 @@ export {
   createReservation,
   createActivity,
   addPhoto,
+  deleteReview
 }
