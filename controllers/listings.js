@@ -6,10 +6,6 @@ import { v2 as cloudinary } from 'cloudinary'
 const create = async (req,res) => {
   try {
     console.log('FORM DATA CHECK', req.body)
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     req.body.author = req.user.profile
     const listing = await Listing.create(req.body)
     const profile = await Profile.findByIdAndUpdate(

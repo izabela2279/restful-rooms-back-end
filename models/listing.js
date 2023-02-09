@@ -19,19 +19,11 @@ const reviewSchema = new Schema(
 
 const reservationSchema = new Schema(
   {
-<<<<<<< HEAD
-    inDate: {
-      type: Date,
-      required: true
-    },
-    ouDate: {
-=======
     dateCheckIn: {
       type: Date,
       required: true
     },
     dateCheckOut: {
->>>>>>> main
       type: Date,
       required: true
     },
@@ -64,10 +56,6 @@ const listingSchema = new Schema(
     },
     photo: {
       type: String,
-<<<<<<< HEAD
-      // required: true,
-=======
->>>>>>> main
     },
     location: {
       type: String,
