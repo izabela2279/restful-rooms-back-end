@@ -11,7 +11,6 @@ const reviewSchema = new Schema(
     rating: {
       type: Number,
       enum: [ 1, 2, 3, 4, 5 ],
-      required: true,
     },
     author: { type: Schema.Types.ObjectId, ref: "Profile" } 
   },
@@ -20,11 +19,19 @@ const reviewSchema = new Schema(
 
 const reservationSchema = new Schema(
   {
+<<<<<<< HEAD
     inDate: {
       type: Date,
       required: true
     },
     ouDate: {
+=======
+    dateCheckIn: {
+      type: Date,
+      required: true
+    },
+    dateCheckOut: {
+>>>>>>> main
       type: Date,
       required: true
     },
@@ -57,7 +64,10 @@ const listingSchema = new Schema(
     },
     photo: {
       type: String,
+<<<<<<< HEAD
       // required: true,
+=======
+>>>>>>> main
     },
     location: {
       type: String,
@@ -91,12 +101,16 @@ const listingSchema = new Schema(
       enum: [ 1, 2, 3, 4, 5, 6, 7, 8],
       required: true,
     },
+    amenities: {
+      type: String,
+      enum: [ "Dev Tools"],
+    },
     author: {
       type: Schema.Types.ObjectId,
       ref: "Profile",
     },
     reviews: [reviewSchema],
-    reservation: [reservationSchema],
+    reservations: [reservationSchema],
     activities: [activitySchema],
   },
   { timestamps: true }

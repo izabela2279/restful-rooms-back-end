@@ -1,10 +1,15 @@
 import { Profile } from "../models/profile.js"
 import { Listing } from "../models/listing.js"
 
+import { v2 as cloudinary } from 'cloudinary'
+
 const create = async (req,res) => {
   try {
     console.log('FORM DATA CHECK', req.body)
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     req.body.author = req.user.profile
     const listing = await Listing.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
@@ -71,10 +76,9 @@ const createReview = async (req, res) => {
     req.body.author = req.user.profile
     const listing = await Listing.findById(req.params.id)
     listing.reviews.push(req.body)
-    await listing.save()
+    listing.save()
 
     const newReview = listing.reviews[listing.reviews.length - 1]
-
     const profile = await Profile.findById(req.user.profile)
     newReview.author = profile
 
@@ -84,14 +88,24 @@ const createReview = async (req, res) => {
   }
 }
 
+const deleteReview = async (req, res) => {
+  try {
+    const {id, reviewId} = req.params
+    await Listing.findByIdAndUpdate(id, {$pull: {reviews: {_id: reviewId} }})
+    res.status(201).json()
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 const createReservation = async (req, res) => {
   try {
     req.body.author = req.user.profile
     const listing = await Listing.findById(req.params.id)
-    listing.reservation.push(req.body)
+    listing.reservations.push(req.body)
     await listing.save()
 
-    const newReservation = listing.reservation[listing.reservation.length - 1]
+    const newReservation = listing.reservations[listing.reservations.length - 1]
 
     const profile = await Profile.findById(req.user.profile)
     newReservation.author = profile
@@ -120,6 +134,25 @@ const createActivity = async (req, res) => {
   }
 }
 
+function addPhoto(req, res) {
+  const imageFile = req.files.photo.path
+  Listing.findById(req.params.id)
+  .then(listing => {
+    cloudinary.uploader.upload(imageFile, {tags: `${req.user.email}`})
+    .then(image => {
+      listing.photo = image.url
+      listing.save()
+      .then(listing => {
+        res.status(201).json(listing.photo)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  })
+}
+
 export {
   create,
   index,
@@ -129,4 +162,6 @@ export {
   createReview,
   createReservation,
   createActivity,
+  addPhoto,
+  deleteReview
 }
