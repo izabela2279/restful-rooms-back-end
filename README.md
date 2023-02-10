@@ -1,7 +1,7 @@
 <h1>Restful Rooms</h1>
 
 
-<img src="https://imgur.com/a/bDXOA5u" alt="restful-rooms">
+<img src="https://i.imgur.com/4oTCAop.png" alt="restful-rooms">
 
 <h1>
 <a href="https://github.com/izabela2279/restful-rooms-front-end" rel="nofollow">Front End Repo</a>
